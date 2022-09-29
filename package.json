@@ -10,19 +10,26 @@
     "prepare": "husky install"
   },
   "gitHooks": {
-    "commit-msg": "node scripts/commit.js"
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,vue}": [
+      "git add ."
+    ]
   },
   "dependencies": {
+    "cosmiconfig": "^7.0.1",
     "lint-staged": "^13.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "yorkie": "^2.0.0"
   },
   "devDependencies": {
+    "@commitlint/config-conventional": "^17.1.0",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.1.0",
-    "husky": "^8.0.1",
+    "commitlint": "^17.1.2",
     "vite": "^3.1.0"
   }
 }
