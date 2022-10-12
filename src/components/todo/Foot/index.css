@@ -1,0 +1,9 @@
+.foot{
+    background-color: rgb(133, 62, 62);
+    display:  flex;
+    margin: 10px;
+    
+}
+.item{
+    margin:0 30px;
+}

@@ -1,34 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import React from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+import "./App.css";
 
-  return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+import Head from "./components/todo/Head";
+import List from "./components/todo/List";
+import Foot from "./components/todo/Foot";
+class App extends React.Component {
+  state = {
+    todos: [],
+  };
+
+  addTodo = (todoObj) => {
+    let { todos } = this.state;
+    let newObj = [...todos, todoObj];
+    this.setState({ todos: newObj });
+    console.log("------todoObj=-", todoObj);
+  };
+  delTodo = (id) => {
+    let { todos } = this.state;
+    const newTodos = todos.filter((it) => {
+      return it.id != id;
+    });
+    this.setState({ todos: newTodos });
+    console.log("删除");
+  };
+  updateTodo = (id) => {};
+  render() {
+    let { todos } = this.state;
+
+    return (
+      <div className="APP">
+        <h2>TODO</h2>
+        <Head addTodo={this.addTodo}></Head>
+        <List todos={todos} delTodo={this.delTodo} />
+        <Foot todos={todos}></Foot>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+    );
+  }
 }
-
-export default App
+export default App;
